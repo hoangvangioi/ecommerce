@@ -1,0 +1,46 @@
+GET http://localhost:8000/clothes/ HTTP/1.1
+
+
+###
+GET http://localhost:8000/clothes/2/ HTTP/1.1
+
+
+###
+POST http://localhost:8000/clothes/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "T book co",
+    "user": 1,
+    "category": 1,
+    "price": 3,
+    "quantity": 122,
+    "description": "Clothes description",
+    "brand": "Band",
+    "color": "Green",
+    "size": "L",
+    "picture": "clothes/confusion_matrix_cFUmiMc.png"
+}
+
+
+###
+PUT http://localhost:8000/clothes/2/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "T 1dsagtn",
+    "slug": "cxzvxcbrg",
+    "user": 1,
+    "category": 7,
+    "price": 3,
+    "quantity": 122,
+    "description": "Clothes description",
+    "brand": "Band",
+    "color": "Green",
+    "size": "L, M",
+    "picture": "clothes/confusion_matrix_cFUmiMc.png"
+}
+
+
+###
+DELETE http://localhost:8000/clothes/2/ HTTP/1.1

@@ -1,0 +1,41 @@
+GET http://localhost:8000/mobile/ HTTP/1.1
+
+
+###
+GET http://localhost:8000/mobile/3/ HTTP/1.1
+
+
+###
+POST http://localhost:8000/mobile/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "mobilemobile",
+    "user": 1,
+    "category": 2,
+    "price": 55,
+    "quantity": 4,
+    "description": "mobilemobile",
+    "brand": "mobilemobile",
+    "picture": "clothes/confusion_matrix_cFUmiMc.png"
+}
+
+
+###
+PUT http://localhost:8000/mobile/4/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "mobile",
+    "user": 1,
+    "category": 2,
+    "price": 115,
+    "quantity": 4,
+    "description": "mobile mobile mobile",
+    "brand": "mobile",
+    "picture": "clothes/confusion_matrix_cFUmiMc.png"
+}
+
+
+###
+DELETE http://localhost:8000/mobile/4/ HTTP/1.1

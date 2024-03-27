@@ -1,0 +1,42 @@
+GET http://localhost:8000/category/ HTTP/1.1
+
+
+###
+GET http://localhost:8000/category/13/ HTTP/1.1
+
+
+###
+POST http://localhost:8000/category/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Sample dsadas",
+    
+}
+
+
+###
+PUT http://localhost:8000/category/1/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Yes no Sample",
+    "slug": "sdasdasff"
+}
+
+
+###
+DELETE http://localhost:8000/category/14/ HTTP/1.1
+
+
+###
+curl -X GET 'http://localhost:8000/category/'
+
+###
+curl -X POST -d "name=new category&slug=new-category" 'http://localhost:8000/category/'
+
+###
+curl -X PUT -d "name=updated category&slug=updated-category" 'http://localhost:8000/category/1/'
+
+###
+curl -X DELETE 'http://localhost:8000/category/10/'
