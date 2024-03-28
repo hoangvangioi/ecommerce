@@ -1,4 +1,4 @@
-from django.db import models
+from djongo import models
 from common.models import BaseModel
 from django.db.models.signals import pre_save
 from common.utils import pre_save_slug_receiver

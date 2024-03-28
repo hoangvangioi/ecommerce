@@ -10,13 +10,13 @@ POST http://localhost:8000/mobile/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "mobilemobile",
+    "name": "da sdfdsgdg fafsafasfa",
     "user": 1,
-    "category": 2,
-    "price": 55,
+    "category": 1,
+    "price": 5544,
     "quantity": 4,
-    "description": "mobilemobile",
-    "brand": "mobilemobile",
+    "description": "mobilbdfhfnemobile",
+    "brand": "mobilemtrhtrhobile",
     "picture": "clothes/confusion_matrix_cFUmiMc.png"
 }
 

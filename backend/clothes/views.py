@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
-from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import User
+# from category.models import CustomUser as User
 from django.conf import settings
 
 
-User = get_user_model()
 from category.models import Category
 from .models import Clothes
 import json
@@ -20,9 +20,9 @@ class ClothesView(View):
             'id': book.id,
             'name': book.name,
             'slug': book.slug,
-            'user': book.user.id,
+            # 'user': book.user.id,
             'category': book.category.id,
-            'price': float(book.price),
+            'price': str(book.price),
             'quantity': book.quantity,
             'description': book.description,
             'created_at': book.created_at,
@@ -48,12 +48,13 @@ class ClothesView(View):
     def post(self, request):
         try:
             data = json.loads(request.body) if request.body else {}
-            user = User.objects.get(pk=data.pop('user'))
+            # user = User.objects.get(pk=data.pop('user'))
             category = Category.objects.get(pk=data.pop('category'))
-            book = Clothes.objects.create(user=user, category=category, **data)
+            book = Clothes.objects.create(category=category, **data)
+            # book = Clothes.objects.create(user=user, category=category, **data)
             return JsonResponse({"message": f"Clothes created successfully!"})
-        except User.DoesNotExist:
-            return HttpResponseBadRequest("User not found.")
+        # except User.DoesNotExist:
+        #     return HttpResponseBadRequest("User not found.")
         except Category.DoesNotExist:
             return HttpResponseBadRequest("Category not found.")
         except Exception as e:
@@ -63,8 +64,8 @@ class ClothesView(View):
         try:
             book = Clothes.objects.get(pk=pk)
             data = json.loads(request.body) if request.body else {}
-            if 'user' in data:
-                book.user = User.objects.get(pk=data.pop('user'))
+            # if 'user' in data:
+            #     book.user = User.objects.get(pk=data.pop('user'))
             if 'category' in data:
                 book.category = Category.objects.get(pk=data.pop('category'))
             for key, value in data.items():
@@ -73,8 +74,8 @@ class ClothesView(View):
             return JsonResponse({"message": f"Clothes updated successfully!"})
         except Clothes.DoesNotExist:
             return HttpResponseBadRequest("Clothes not found.")
-        except User.DoesNotExist:
-            return HttpResponseBadRequest("User not found.")
+        # except User.DoesNotExist:
+        #     return HttpResponseBadRequest("User not found.")
         except Category.DoesNotExist:
             return HttpResponseBadRequest("Category not found.")
         except Exception as e:

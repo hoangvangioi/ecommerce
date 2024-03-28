@@ -10,7 +10,7 @@ POST http://localhost:8000/book/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "xjasfnkqw book",
+    "name": "aaaaaaaaaaaaaaaaaaaaaa",
     "user": 1,
     "category": 1,
     "price": 555.00,

@@ -10,8 +10,8 @@ POST http://localhost:8000/category/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Sample dsadas",
-    
+    "name": "gfdg hfgxxgfh",
+    "slug": "asdsf-dsadas"
 }
 
 

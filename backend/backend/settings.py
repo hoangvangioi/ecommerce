@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'category',
     'clothes',
     'mobile',
-    'user',
     'search',
 ]
 
@@ -83,39 +82,45 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'authdb',
+        'CONN_MAX_AGE': 600,
     },
     'book_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'book.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'bookdb',
+        'CONN_MAX_AGE': 600,
     },
     'category_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'category.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'categorydb',
+        'CONN_MAX_AGE': 600,
     },
     'clothes_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'clothes.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'clothesdb',
+        'CONN_MAX_AGE': 600,
     },
     'mobile_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'mobile.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'mobiledb',
+        'CONN_MAX_AGE': 600,
     },
     'cart_db': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'cart.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'cartdb',
+        'CONN_MAX_AGE': 600,
     },
 }
 
-# DATABASE_ROUTERS = [
-#     'backend.router.AuthRouter',
-#     'backend.router.BookRouter',
-#     'backend.router.CategoryRouter',
-#     'backend.router.ClothesRouter',
-#     'backend.router.MobileRouter',
-#     'backend.router.CartRouter',
-# ]
+DATABASE_ROUTERS = [
+    'backend.router.AuthRouter',
+    'backend.router.BookRouter',
+    'backend.router.CategoryRouter',
+    'backend.router.ClothesRouter',
+    'backend.router.MobileRouter',
+    'backend.router.CartRouter',
+]
 
 
 # Password validation
@@ -163,6 +168,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'user.User'
- 

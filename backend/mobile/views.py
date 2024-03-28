@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
-from django.contrib.auth import get_user_model
 from django.conf import settings
 
-
-User = get_user_model()
+# from django.contrib.auth.models import User
+# from category.models import CustomUser as User
 from category.models import Category
 from .models import Mobile
 import json
@@ -20,9 +19,9 @@ class MobileView(View):
             'id': mobile.id,
             'name': mobile.name,
             'slug': mobile.slug,
-            'user': mobile.user.id,
+            # 'user': mobile.user.id,
             'category': mobile.category.id,
-            'price': float(mobile.price),
+            'price': str(mobile.price),
             'quantity': mobile.quantity,
             'description': mobile.description,
             'created_at': mobile.created_at,
@@ -47,12 +46,13 @@ class MobileView(View):
         try:
             # data = {key: request.POST.get(key) for key in request.POST}
             data = json.loads(request.body) if request.body else {}
-            user = User.objects.get(pk=data.pop('user'))
+            # user = User.objects.get(pk=data.pop('user'))
             category = Category.objects.get(pk=data.pop('category'))
-            mobile = Mobile.objects.create(user=user, category=category, **data)
+            mobile = Mobile.objects.create(category=category, **data)
+            # mobile = Mobile.objects.create(user=user, category=category, **data)
             return JsonResponse({"message": f"Mobile created successfully!"})
-        except User.DoesNotExist:
-            return HttpResponseBadRequest("User not found.")
+        # except User.DoesNotExist:
+        #     return HttpResponseBadRequest("User not found.")
         except Category.DoesNotExist:
             return HttpResponseBadRequest("Category not found.")
         except Exception as e:
@@ -63,8 +63,8 @@ class MobileView(View):
             mobile = Mobile.objects.get(pk=pk)
             # data = {key: request.POST.get(key) for key in request.POST}
             data = json.loads(request.body) if request.body else {}
-            if 'user' in data:
-                mobile.user = User.objects.get(pk=data.pop('user'))
+            # if 'user' in data:
+            #     mobile.user = User.objects.get(pk=data.pop('user'))
             if 'category' in data:
                 mobile.category = Category.objects.get(pk=data.pop('category'))
             for key, value in data.items():
@@ -73,8 +73,8 @@ class MobileView(View):
             return JsonResponse({"message": f"Mobile updated successfully!"})
         except Mobile.DoesNotExist:
             return HttpResponseBadRequest("Mobile not found.")
-        except User.DoesNotExist:
-            return HttpResponseBadRequest("User not found.")
+        # except User.DoesNotExist:
+        #     return HttpResponseBadRequest("User not found.")
         except Category.DoesNotExist:
             return HttpResponseBadRequest("Category not found.")
         except Exception as e:

@@ -1,17 +1,16 @@
-from django.db import models
-from django.contrib.auth import get_user_model
+from djongo import models
 from book.models import Book
 from clothes.models import Clothes
 from mobile.models import Mobile
+# from django.contrib.auth.models import User
+# from category.models import CustomUser as User
 
 # Create your models here.
 
 
-User = get_user_model()
-
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
+    # user = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     session = models.CharField(blank=True, max_length=100)
     quantity = models.IntegerField(default=1)
 
